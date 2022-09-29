@@ -2,22 +2,68 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../global/Header";
+import AWS from "aws-sdk";
+import axios from "axios";
+import { Loader } from "../global/Loader";
 
 const TodoSubmit = () => {
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
+  const [name, setName] = useState(localStorage.getItem("name"));
+  const [id, setId] = useState(localStorage.getItem("userid"));
+  const [loading, setLoading] = useState(false);
   const inputRef = useRef(null);
   const navigate = useNavigate();
   const params = useParams();
   console.log(params);
 
+  const region = "ap-northeast-2";
+  const bucket = "todomall-assignment-images";
+
+  AWS.config.update({
+    region: region,
+    accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+  });
+
   const handleImageUpload = async (e) => {
     const temp = e.target.files;
     setImage(temp);
+    console.log(temp);
   };
 
   const handleSubmit = async () => {
-    //axios post
-    navigate("/todo/success");
+    setLoading(true);
+    const upload = new AWS.S3.ManagedUpload({
+      params: {
+        Bucket: bucket,
+        Key:
+          id +
+          "/" +
+          params.productid +
+          "/" +
+          params.todoname +
+          "/" +
+          new Date().getTime() +
+          ".png",
+        Body: image[0],
+      },
+    });
+
+    const promise = upload.promise();
+    promise.then((res) => {
+      console.log(res);
+      axios
+        .patch(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`, {
+          userId: localStorage.getItem("userid"),
+          productId: params.productid,
+          missionImage: res.Location,
+          sessionId: params.sessionid,
+        })
+        .then(() => {
+          setLoading(false);
+          navigate("/todo/success");
+        });
+    });
   };
 
   const onUploadImageButtonClick = useCallback(() => {
@@ -42,6 +88,10 @@ const TodoSubmit = () => {
 
     reader.readAsDataURL(image[0]);
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>
