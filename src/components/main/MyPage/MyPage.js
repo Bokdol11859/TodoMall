@@ -3,7 +3,6 @@ import BottomNavBar from "../../global/BottomNavBar";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import requests from "../../../api/request";
 import Row from "./Row";
 import { Loader } from "../../global/Loader";
 
@@ -13,21 +12,30 @@ const MyPage = () => {
   const [name, setName] = useState(localStorage.getItem("name"));
   const [email, setEmail] = useState(localStorage.getItem("email"));
   const [image, setImage] = useState(localStorage.getItem("image"));
+
+  const checkFail = (plan) => {
+    let check = false;
+    plan.sessions.forEach((session) => {
+      if (check) {
+        return;
+      }
+      if (!session.endedDate) {
+        if (new Date(session.expireDate) < new Date()) {
+          check = true;
+        }
+      }
+    });
+    return check;
+  };
+
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    console.log(image);
     const fetch = async () => {
       const response = await axios.get(
         `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
       );
-      console.log(response);
-      setPlans(response.data.ownProducts);
+      setPlans(response.data.ownProducts.reverse());
       setLoading(false);
-      // let temp = [];
-      // for (const [date, plans] of Object.entries(response.data)) {
-      //   temp = [...temp, [date, plans]];
-      // }
-      // setPlans([...temp]);
     };
     fetch();
   }, []);
@@ -56,26 +64,25 @@ const MyPage = () => {
         </Header>
 
         <Body>
-          {/* <PlanDate>
-            {0}년 {0}월
-          </PlanDate> */}
           {plans?.length > 0 ? (
-            plans.map((plan, i) => (
-              <Row
-                key={plan.id}
-                is_completed={plan.status}
-                id={plans.length - i}
-                title={plan.title}
-                icon={plan.icon}
-              />
-            ))
+            plans.map((plan, i) => {
+              return (
+                <Row
+                  key={plan.id}
+                  is_failed={checkFail(plan)}
+                  is_completed={plan.status}
+                  id={plans.length - i}
+                  title={plan.title}
+                  icon={plan.icon}
+                />
+              );
+            })
           ) : (
             <NoPlan>
               <NoPlanImage src="/images/mypage_no_plan.svg" />
               <NoPlanTitle>아직 경험한 클래스가 없네요!</NoPlanTitle>
               <NoPlanSubtitle>앞으로 클래스를 탐색하고 완료하면</NoPlanSubtitle>
               <NoPlanSubtitle>여기에 표시되어요.</NoPlanSubtitle>
-              {/* <Button link="/todomall" title="클래스 찾아보기" width="70" /> */}
             </NoPlan>
           )}
         </Body>
@@ -114,7 +121,6 @@ const User = styled.div`
 `;
 
 const UserName = styled.p`
-  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -123,7 +129,6 @@ const UserName = styled.p`
 `;
 
 const UserEmail = styled.p`
-  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 100;
   font-size: 14px;
@@ -175,15 +180,6 @@ const NoPlanSubtitle = styled.p`
   line-height: 24px;
   text-align: center;
   color: #888888;
-`;
-
-const PlanDate = styled.p`
-  /* font-family: "PretendardMedium"; */
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  color: #dbdbdb;
-  margin-left: 25px;
 `;
 
 export default MyPage;

@@ -3,15 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { IconDict } from "../../global/Icon";
 
-const Card = ({
-  title,
-  description,
-  smallTags,
-  largeTags,
-  subDescription,
-  id,
-  icon,
-}) => {
+const Card = ({ title, description, smallTags, subDescription, id, icon }) => {
   const navigate = useNavigate();
 
   const cardSmallTag = smallTags.map((tag, index) => {
@@ -35,7 +27,7 @@ const Card = ({
     >
       <DescriptionFor>{subDescription}</DescriptionFor>
       <CardTitle>{title}</CardTitle>
-      <CardDescription>{description.substring(0, CutOff)}...</CardDescription>
+      <CardDescription>{description}</CardDescription>
       <CardIcon src={`${icon}`} />
       <CardTags>{cardSmallTag}</CardTags>
     </CardBox>
@@ -61,7 +53,6 @@ const CardIcon = styled.img`
 `;
 
 const DescriptionFor = styled.p`
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -70,12 +61,12 @@ const DescriptionFor = styled.p`
 `;
 
 const CardTitle = styled.p`
-  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
-  font-size: 22px;
+  font-size: 20px;
   color: #000000;
   margin-bottom: 5px;
+  width: 85%;
 `;
 
 const CardDescription = styled.p`
@@ -111,7 +102,6 @@ const CardTag = styled.div`
   font-weight: 500;
   font-size: 14px;
   line-height: 14px;
-  /* identical to box height, or 100% */
   display: flex;
   align-items: center;
   text-align: center;
@@ -119,11 +109,7 @@ const CardTag = styled.div`
 `;
 
 const TagIcon = styled.img`
-  /* width: 14px;
-  height: 14px; */
   margin-right: 3px;
 `;
-
-const TagContent = styled.img``;
 
 export default Card;

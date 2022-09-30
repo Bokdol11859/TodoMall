@@ -3,7 +3,6 @@ import styled from "styled-components";
 import TodoBoxCard from "./TodoBoxCard";
 
 const handleSession = (session) => {
-  // console.log(session);
   let temp = [];
   if (Object.keys(session).length > 0) {
     session.todos.forEach((todo) => {
@@ -15,16 +14,10 @@ const handleSession = (session) => {
   return temp;
 };
 
-const TodoBoxContent = ({ plans }) => {
-  // console.log(plans);
-
+const TodoBoxContent = ({ plans, check, setCheck }) => {
   return (
     <TodoBoxContentContainer>
       {plans.map((plan) => {
-        // console.log(temp);
-        console.log("Cur time: ", Date.now());
-        console.log("expire time: ", Date.parse(plan.expireDate));
-        // console.log(Date.now() >= Date.parse(plan.expireDate));
         if (handleSession(plan).length === 0) {
           return (
             <TodoBoxCard
@@ -33,6 +26,8 @@ const TodoBoxContent = ({ plans }) => {
               id={plan.id}
               submit={true}
               key={plan.id}
+              check={check}
+              setCheck={setCheck}
             />
           );
         } else {
@@ -44,6 +39,8 @@ const TodoBoxContent = ({ plans }) => {
                 id={plan.id}
                 end={true}
                 key={plan.id}
+                check={check}
+                setCheck={setCheck}
               />
             );
           } else {
@@ -53,6 +50,8 @@ const TodoBoxContent = ({ plans }) => {
                 id={plan.id}
                 session={plan}
                 key={plan.id}
+                check={check}
+                setCheck={setCheck}
               />
             );
           }

@@ -41,7 +41,10 @@ const PlanIntro = ({
           ))}
         </SmallTags>
         <Creator>
-          <ProfileImage alt="creator" src={creator_image} />
+          <ProfileImage
+            alt="creator"
+            src={creator_image ? creator_image : "/images/System_Profile.svg"}
+          />
           <ProfileDescription>
             <Name>
               {creator_name}
@@ -58,7 +61,6 @@ const PlanIntro = ({
 const Image = styled.img`
   width: 100%;
   max-width: ${MAX_WIDTH};
-  /* height: 160px; */
   overflow: hidden;
 `;
 
@@ -104,7 +106,6 @@ const SmallTags = styled.div`
   font-weight: 500;
   font-size: 14px;
   line-height: 14px;
-  /* identical to box height, or 100% */
   display: flex;
   align-items: center;
   text-align: center;
@@ -126,8 +127,6 @@ const SmallTag = styled.div`
 `;
 
 const TagIcon = styled.img`
-  /* width: 14px;
-  height: 14px; */
   margin-right: 3px;
 `;
 

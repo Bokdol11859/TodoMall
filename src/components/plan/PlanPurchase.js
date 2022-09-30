@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../global/Header";
@@ -9,16 +9,14 @@ const PlanPurchase = () => {
   const productId = useParams().planid;
   const userId = localStorage.getItem("userid");
   const handlePurchase = async () => {
-    const response = await axios.post(
-      `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`,
-      {
+    const response = await axios
+      .post(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`, {
         productId: productId,
         userId: userId,
-      }
-    );
-
-    // console.log(response);
-    navigate("/todobox");
+      })
+      .then(() => {
+        navigate("/todobox");
+      });
   };
 
   const [page, setPage] = useState(0);
@@ -99,8 +97,6 @@ const BodyText = styled.p`
   font-weight: 700;
   font-size: 20px;
   line-height: 30px;
-  /* or 150% */
-
   color: #222222;
   line-height: 25px;
   margin: 0;
@@ -112,7 +108,7 @@ const BodyImage = styled.img`
   width: 80vw;
   max-width: 600px;
   position: fixed;
-  top: 45%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;
@@ -125,7 +121,6 @@ const BodyDescription = styled.p`
   line-height: 25px;
   color: #888888;
   margin: 0;
-  /* margin-top: 10px; */
   text-align: left;
 `;
 

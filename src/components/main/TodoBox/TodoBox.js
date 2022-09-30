@@ -10,9 +10,8 @@ const TodoBox = () => {
   const [email, setEmail] = useState(localStorage.getItem("email"));
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [check, setCheck] = useState(false);
   const handlePlan = (plans) => {
-    console.log(plans);
     let temp_plans = [];
     plans.forEach((plan) => {
       let temp = {};
@@ -35,7 +34,6 @@ const TodoBox = () => {
         });
       }
     });
-    console.log(temp_plans);
     return temp_plans;
   };
 
@@ -44,12 +42,11 @@ const TodoBox = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
       );
-      console.log(response.data.ownProducts);
       setPlans(handlePlan(response.data.ownProducts));
       setLoading(false);
     };
     fetch();
-  }, []);
+  }, [check]);
 
   if (loading) {
     return <Loader />;
@@ -60,7 +57,7 @@ const TodoBox = () => {
       <TodoBoxHeader length={plans?.length > 0 ? plans.length : 0} />
       <TodoBoxBody>
         {plans?.length > 0 ? (
-          <TodoBoxContent plans={plans} />
+          <TodoBoxContent plans={plans} check={check} setCheck={setCheck} />
         ) : (
           <TodoBoxEmptyContainer>
             <TodoBoxEmptyImage src="/images/TodoBoxEmptyImage.svg" />
