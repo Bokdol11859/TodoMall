@@ -6,6 +6,7 @@ import styled from "styled-components";
 const TodoBoxCard = ({
   title,
   session,
+  productId,
   submit = false,
   end = false,
   check,
@@ -166,18 +167,7 @@ const TodoBoxCard = ({
           </TodoBoxCardBody>
         )}
 
-        {submit ? (
-          <TodoBoxCardSubmitButton
-            onClick={() => {
-              navigate(
-                `/todo/${session.id}/${session.plan_id}/${session.title}/submit`
-              );
-            }}
-          >
-            ({session.current_session}/{session.total_session}) 세션 인증하러
-            가기
-          </TodoBoxCardSubmitButton>
-        ) : end || curTime.ended ? (
+        {end || curTime.ended ? (
           <>
             <TodoBoxCardEndButton
               onClick={() => {
@@ -203,6 +193,17 @@ const TodoBoxCard = ({
               데드라인 만료로 이후 수강권이 삭제됐어요
             </TodoBoxCardEndText>
           </>
+        ) : submit ? (
+          <TodoBoxCardSubmitButton
+            onClick={() => {
+              navigate(
+                `/todo/${session.id}/${session.plan_id}/${session.title}/${productId}/submit`
+              );
+            }}
+          >
+            ({session.current_session}/{session.total_session}) 세션 인증하러
+            가기
+          </TodoBoxCardSubmitButton>
         ) : null}
       </TodoBoxCardContainer>
     );
@@ -307,6 +308,7 @@ const TodoBoxCardBodyEnded = styled.div`
 
 const Blurred = styled.div`
   opacity: 7%;
+  pointer-events: none;
 `;
 
 const BlurredCover = styled.div`

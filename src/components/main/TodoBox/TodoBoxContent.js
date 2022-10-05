@@ -18,26 +18,29 @@ const TodoBoxContent = ({ plans, check, setCheck }) => {
   return (
     <TodoBoxContentContainer>
       {plans.map((plan) => {
-        if (handleSession(plan).length === 0) {
+        console.log(plan);
+        if (Date.now() >= Date.parse(plan.expireDate)) {
           return (
             <TodoBoxCard
               title={plan.plan_title}
               session={plan}
               id={plan.id}
-              submit={true}
+              productId={plan.productId}
+              end={true}
               key={plan.id}
               check={check}
               setCheck={setCheck}
             />
           );
         } else {
-          if (Date.now() >= Date.parse(plan.expireDate)) {
+          if (handleSession(plan).length === 0) {
             return (
               <TodoBoxCard
                 title={plan.plan_title}
                 session={plan}
                 id={plan.id}
-                end={true}
+                productId={plan.productId}
+                submit={true}
                 key={plan.id}
                 check={check}
                 setCheck={setCheck}
@@ -48,6 +51,7 @@ const TodoBoxContent = ({ plans, check, setCheck }) => {
               <TodoBoxCard
                 title={plan.plan_title}
                 id={plan.id}
+                productId={plan.productId}
                 session={plan}
                 key={plan.id}
                 check={check}
