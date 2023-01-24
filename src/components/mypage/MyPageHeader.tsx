@@ -1,10 +1,25 @@
 import styled from '@emotion/styled';
 import COLOR from '@src/common/constants/Colors';
+import Class from '@src/common/types/Class.type';
 import Image from 'next/image';
 import React from 'react';
 import { SettingIcon } from '../icons/SystemIcons';
 
-const MyPageHeader = ({ name, email, profileImage }: { name: string; email: string; profileImage: string }) => {
+const MyPageHeader = ({
+  name,
+  email,
+  profileImage,
+  successClasses,
+  failClasses,
+  ongoingClasses,
+}: {
+  name: string;
+  email: string;
+  profileImage: string;
+  successClasses: Class[];
+  failClasses: Class[];
+  ongoingClasses: Class[];
+}) => {
   return (
     <Container>
       <ProfileContainer>
@@ -21,11 +36,15 @@ const MyPageHeader = ({ name, email, profileImage }: { name: string; email: stri
       <DataContainer>
         <DataColumn>
           <DataColumnTitle>성공한 클래스</DataColumnTitle>
-          <DataColumnNumber>3</DataColumnNumber>
+          <DataColumnNumber color={COLOR.BLACK}>{successClasses.length}</DataColumnNumber>
+        </DataColumn>
+        <DataColumn>
+          <DataColumnTitle isActive>실패한 클래스</DataColumnTitle>
+          <DataColumnNumber color={COLOR.ERROR500}>{failClasses.length}</DataColumnNumber>
         </DataColumn>
         <DataColumn>
           <DataColumnTitle isActive>진행중인 클래스</DataColumnTitle>
-          <DataColumnNumber isActive>1</DataColumnNumber>
+          <DataColumnNumber color={COLOR.PURPLE500}>{ongoingClasses.length}</DataColumnNumber>
         </DataColumn>
       </DataContainer>
     </Container>
@@ -104,7 +123,7 @@ const DataContainer = styled.div`
 `;
 
 const DataColumn = styled.div`
-  width: 50%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -125,12 +144,12 @@ const DataColumnTitle = styled.p<{ isActive?: boolean }>`
   border-left: ${(props) => props.isActive && `1px solid ${COLOR.GRAY100}`};
 `;
 
-const DataColumnNumber = styled.p<{ isActive?: boolean }>`
+const DataColumnNumber = styled.p<{ color: string }>`
   font-style: normal;
   font-weight: 700;
   font-size: 1.2rem;
   line-height: 1.6rem;
-  color: ${(props) => (props.isActive ? COLOR.PURPLE500 : COLOR.GRAY600)};
+  color: ${(props) => props.color};
   margin: 0;
 `;
 
