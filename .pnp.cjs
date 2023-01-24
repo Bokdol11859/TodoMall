@@ -48,6 +48,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react", "npm:18.0.25"],\
             ["@types/react-dom", "npm:18.0.9"],\
             ["@types/sharp", "npm:0.31.0"],\
+            ["axios", "npm:1.2.3"],\
             ["babel-loader", "virtual:44a78929efcbdf16b38537c7933c515d00ba0a76f804739948378f18d21d900fe2dbb551f95903126a64ffe98af3d43001b6458008dc766cc2c8798ef5b4f36b#npm:8.3.0"],\
             ["chromatic", "npm:6.14.0"],\
             ["cypress", "npm:12.2.0"],\
@@ -8872,6 +8873,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react", "npm:18.0.25"],\
             ["@types/react-dom", "npm:18.0.9"],\
             ["@types/sharp", "npm:0.31.0"],\
+            ["axios", "npm:1.2.3"],\
             ["babel-loader", "virtual:44a78929efcbdf16b38537c7933c515d00ba0a76f804739948378f18d21d900fe2dbb551f95903126a64ffe98af3d43001b6458008dc766cc2c8798ef5b4f36b#npm:8.3.0"],\
             ["chromatic", "npm:6.14.0"],\
             ["cypress", "npm:12.2.0"],\
@@ -9716,6 +9718,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/axe-core-npm-4.6.1-1eaf396912-a376c9e294.zip/node_modules/axe-core/",\
           "packageDependencies": [\
             ["axe-core", "npm:4.6.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["axios", [\
+        ["npm:1.2.3", {\
+          "packageLocation": "./.yarn/cache/axios-npm-1.2.3-f755ac0cc4-52802a1e31.zip/node_modules/axios/",\
+          "packageDependencies": [\
+            ["axios", "npm:1.2.3"],\
+            ["follow-redirects", "virtual:f755ac0cc4c70c35e076928f8aa6f0263fd636cc4e2099e4e273c13cc606b69b7a388f291c0c8619acb7408ff1b451b75383f6c8b49bc764e34ed80f23de3d43#npm:1.15.2"],\
+            ["form-data", "npm:4.0.0"],\
+            ["proxy-from-env", "npm:1.1.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -13959,6 +13973,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["follow-redirects", [\
+        ["npm:1.15.2", {\
+          "packageLocation": "./.yarn/cache/follow-redirects-npm-1.15.2-1ec1dd82be-faa66059b6.zip/node_modules/follow-redirects/",\
+          "packageDependencies": [\
+            ["follow-redirects", "npm:1.15.2"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:f755ac0cc4c70c35e076928f8aa6f0263fd636cc4e2099e4e273c13cc606b69b7a388f291c0c8619acb7408ff1b451b75383f6c8b49bc764e34ed80f23de3d43#npm:1.15.2", {\
+          "packageLocation": "./.yarn/__virtual__/follow-redirects-virtual-648473d7d2/0/cache/follow-redirects-npm-1.15.2-1ec1dd82be-faa66059b6.zip/node_modules/follow-redirects/",\
+          "packageDependencies": [\
+            ["follow-redirects", "virtual:f755ac0cc4c70c35e076928f8aa6f0263fd636cc4e2099e4e273c13cc606b69b7a388f291c0c8619acb7408ff1b451b75383f6c8b49bc764e34ed80f23de3d43#npm:1.15.2"],\
+            ["@types/debug", null],\
+            ["debug", null]\
+          ],\
+          "packagePeers": [\
+            "@types/debug",\
+            "debug"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["for-each", [\
         ["npm:0.3.3", {\
           "packageLocation": "./.yarn/cache/for-each-npm-0.3.3-0010ca8cdd-6c48ff2bc6.zip/node_modules/for-each/",\
@@ -14175,6 +14211,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/form-data-npm-3.0.1-d080d436e0-b019e8d35c.zip/node_modules/form-data/",\
           "packageDependencies": [\
             ["form-data", "npm:3.0.1"],\
+            ["asynckit", "npm:0.4.0"],\
+            ["combined-stream", "npm:1.0.8"],\
+            ["mime-types", "npm:2.1.35"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:4.0.0", {\
+          "packageLocation": "./.yarn/cache/form-data-npm-4.0.0-916facec2d-01135bf867.zip/node_modules/form-data/",\
+          "packageDependencies": [\
+            ["form-data", "npm:4.0.0"],\
             ["asynckit", "npm:0.4.0"],\
             ["combined-stream", "npm:1.0.8"],\
             ["mime-types", "npm:2.1.35"]\
@@ -19920,6 +19966,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/proxy-from-env-npm-1.0.0-679b82b4ec-292e28d1de.zip/node_modules/proxy-from-env/",\
           "packageDependencies": [\
             ["proxy-from-env", "npm:1.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:1.1.0", {\
+          "packageLocation": "./.yarn/cache/proxy-from-env-npm-1.1.0-c13d07f26b-ed7fcc2ba0.zip/node_modules/proxy-from-env/",\
+          "packageDependencies": [\
+            ["proxy-from-env", "npm:1.1.0"]\
           ],\
           "linkType": "HARD"\
         }]\
