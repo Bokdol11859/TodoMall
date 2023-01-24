@@ -48,13 +48,7 @@ export default function Home() {
             handleLogin(SOCIAL.KAKAO_PATH);
           }}
         />
-        <AppleLogin
-          onClick={() => {
-            push('signup');
-          }}
-        />
         <TextButtons>
-          <TextButton href="/todobox">게스트로 둘러보기</TextButton>
           <TextButton href="/terms/personal">개인정보처리방침</TextButton>
           <TextButton href="/terms/service">서비스 이용약관</TextButton>
         </TextButtons>

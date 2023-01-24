@@ -16,6 +16,8 @@ const Signup = () => {
   const { push } = useRouter();
 
   const handleClick = () => {
+    localStorage.setItem('personal', 'true');
+    localStorage.setItem('service', 'true');
     push(PATHS.TODOBOX);
   };
 
