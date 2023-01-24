@@ -1,9 +1,13 @@
 import { AxiosInstance } from '@src/common/api/axios';
+import { setUserInfo } from '@src/common/redux/slices/userInfoSlice';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 const Social = () => {
   const { query, isReady, push } = useRouter();
+
+  const dispatch = useDispatch();
 
   const getAuthInfo = async () => {
     const kakao_response = await AxiosInstance.post(
@@ -28,7 +32,7 @@ const Social = () => {
         name: kakao_user_info.data.kakao_account.profile.nickname,
       });
 
-      localStorage.setItem('userid', user_info.data.id);
+      dispatch(setUserInfo({ userid: user_info.data.id, email: kakao_user_info.data.kakao_account.email }));
 
       if (localStorage.getItem('personal') && localStorage.getItem('service')) {
         push('/todobox');
@@ -38,7 +42,7 @@ const Social = () => {
     } catch {
       const user_info = await AxiosInstance.get(`${process.env.NEXT_PUBLIC_TODO_MALL_API_ENDPOINT}user?email=${email}`);
 
-      localStorage.setItem('userid', user_info.data.id);
+      dispatch(setUserInfo({ userid: user_info.data.id, email: kakao_user_info.data.kakao_account.email }));
 
       push('/todobox');
     }
