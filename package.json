@@ -1,53 +1,67 @@
 {
-  "name": "todomall",
+  "name": "TodoMall-Client-V2",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@emotion/react": "^11.9.3",
-    "@emotion/styled": "^11.9.3",
-    "@mui/icons-material": "^5.8.4",
-    "@mui/material": "^5.9.1",
-    "@nextui-org/react": "^1.0.0-beta.9",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
-    "aws-sdk": "^2.1225.0",
-    "axios": "^0.27.2",
-    "browser-image-compression": "^2.0.0",
-    "compression-webpack-plugin": "^10.0.0",
-    "compressorjs": "^1.1.1",
-    "dotenv": "^16.0.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-progressbar-on-scroll": "^2.0.0",
-    "react-remove-scroll-bar": "^2.3.3",
-    "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.1",
-    "styled-components": "^5.3.5",
-    "web-vitals": "^2.1.4"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
-    "test": "DISABLE_ESLINT_PLUGIN=true react-scripts test",
-    "eject": "DISABLE_ESLINT_PLUGIN=true react-scripts eject"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "cypress:open": "cypress open",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook -s public",
+    "deploy-storybook": "storybook-to-ghpages"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "@apollo/client": "^3.7.1",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@reduxjs/toolkit": "^1.9.1",
+    "@types/node": "18.11.10",
+    "@types/react": "18.0.25",
+    "@types/react-dom": "18.0.9",
+    "eslint": "^8.28.0",
+    "eslint-config-next": "13.0.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "framer-motion": "^7.6.18",
+    "graphql": "^16.6.0",
+    "next": "13.0.5",
+    "next-pwa": "^5.6.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-redux": "^8.0.5",
+    "react-transition-group": "^4.4.5",
+    "sharp": "^0.31.2",
+    "storybook-addon-next-router": "^4.0.2",
+    "typescript": "4.9.3",
+    "util": "^0.12.5"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "@mdx-js/react": "^1.6.22",
+    "@storybook/addon-actions": "^6.5.14",
+    "@storybook/addon-docs": "^6.5.14",
+    "@storybook/addon-essentials": "^6.5.14",
+    "@storybook/addon-interactions": "^6.5.14",
+    "@storybook/addon-links": "^6.5.14",
+    "@storybook/builder-webpack5": "^6.5.14",
+    "@storybook/manager-webpack5": "^6.5.14",
+    "@storybook/react": "^6.5.14",
+    "@storybook/storybook-deployer": "^2.8.16",
+    "@storybook/testing-library": "^0.0.13",
+    "@types/babel__core": "^7",
+    "@types/graphql": "^14.5.0",
+    "@types/react-transition-group": "^4",
+    "@types/sharp": "^0",
+    "babel-loader": "^8.3.0",
+    "chromatic": "^6.14.0",
+    "cypress": "^12.1.0",
+    "eslint-plugin-storybook": "^0.6.7",
+    "react-docgen-typescript": "^2.2.2",
+    "react-docgen-typescript-loader": "^3.7.2",
+    "tsconfig-paths-webpack-plugin": "^4.0.0"
+  },
+  "packageManager": "yarn@3.3.1",
+  "readme": "ERROR: No README data found!",
+  "_id": "TodoMall-Client-V2@0.1.0"
 }
