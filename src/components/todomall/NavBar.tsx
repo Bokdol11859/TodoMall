@@ -50,6 +50,8 @@ const Container = styled.div`
   margin-top: 3rem;
   background-color: ${COLOR.BACKGROUND50};
   border-bottom: 1.5px solid ${COLOR.GRAY50};
+  position: absolute;
+  z-index: 100000;
 `;
 
 const Column = styled.div`

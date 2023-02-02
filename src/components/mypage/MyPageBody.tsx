@@ -23,8 +23,15 @@ const MyPageBody = ({ classes }: { classes: Class[] }) => {
 
 const Container = styled.div`
   width: 100%;
-  height: calc(100% - 23rem);
+  padding-top: 17.5rem;
   overflow-y: scroll;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export default MyPageBody;

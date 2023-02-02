@@ -18,6 +18,14 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${COLOR.BACKGROUND100};
+  overflow-y: scroll;
+  padding-bottom: 6rem;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export default MainPageLayout;

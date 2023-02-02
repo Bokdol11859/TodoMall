@@ -42,5 +42,3 @@ const MyPage = () => {
 };
 
 export default MyPage;
-
-// successClasses={successClasses} failClasses={failClasses} ongoingClasses={ongoingClasses}
