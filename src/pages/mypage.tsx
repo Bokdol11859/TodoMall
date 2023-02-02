@@ -16,10 +16,10 @@ const MyPage = () => {
   const { data, isLoading, error } = useQuery(['UserInfo'], () => getUserInfo(email));
 
   const { successClasses, failClasses, ongoingClasses } = separateClassesByState(data?.ownProducts);
-  const allClasses = [...data?.ownProducts].reverse();
+  const allClasses = data && [...data.ownProducts].reverse();
 
   if (isLoading) {
-    return <div>Loading</div>;
+    return <div>Loading...</div>;
   }
 
   if (error) {
