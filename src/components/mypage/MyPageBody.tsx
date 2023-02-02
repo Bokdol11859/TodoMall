@@ -23,7 +23,7 @@ const MyPageBody = ({ classes }: { classes: Class[] }) => {
 
 const Container = styled.div`
   width: 100%;
-  height: calc(100% - 25rem);
+  height: calc(100% - 23rem);
   overflow-y: scroll;
 `;
 
