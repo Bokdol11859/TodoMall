@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import agreementSlice from './slices/agreementSlice';
+import categorySlice from './slices/categorySlice';
 import splashSlice from './slices/splashSlice';
 import userInfoSlice from './slices/userInfoSlice';
 
@@ -8,6 +9,7 @@ export const store = configureStore({
     agreement: agreementSlice,
     splash: splashSlice,
     userinfo: userInfoSlice,
+    category: categorySlice,
   },
 });
 
