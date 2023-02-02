@@ -13,6 +13,10 @@ const nextConfig = withPWA({
         protocol: 'https',
         hostname: 'k.kakaocdn.net',
       },
+      {
+        protocol: 'https',
+        hostname: 'todomall-content.s3.ap-northeast-2.amazonaws.com',
+      },
     ],
   },
 });

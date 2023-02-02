@@ -39,6 +39,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${COLOR.BACKGROUND50};
+  z-index: 100000;
 `;
 
 const ButtonWrapper = styled.div`
