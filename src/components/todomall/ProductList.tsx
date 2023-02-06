@@ -8,6 +8,7 @@ const ProductList = ({ productList }: { productList: Product[] }) => {
     <Container>
       {productList.map((product: Product) => (
         <ProductCard
+          id={product.id}
           subtitle={product.subDescription}
           title={product.title}
           description={product.description}
