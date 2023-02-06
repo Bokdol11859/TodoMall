@@ -23,7 +23,7 @@ const TodoMall = () => {
       <NavBar category={category} />
       <CategoryDisplay>
         <CategoryTitle src={`/assets/${category}_title.svg`} alt={category} width={300} height={100} />
-        <CategoryImage src={`/assets/${category}_image.svg`} alt={category} width={400} height={300} />
+        <CategoryImage src={`/assets/${category}_image.svg`} alt={category} width={360} height={300} />
       </CategoryDisplay>
       <ProductList productList={TodoMallQuery?.data} />
     </MainPageLayout>
