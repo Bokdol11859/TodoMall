@@ -38,6 +38,16 @@ const Detail = () => {
             </ProductTagWrapper>
           ))}
         </ProductTags>
+        <ProductDescription>{productQuery.data?.description}</ProductDescription>
+        <ProductCreatorContainer>
+          <ProductCreatorImage src={productQuery.data?.creator.image} alt={'Profile Image'} width={64} height={64} />
+          <ProductCreatorInformation>
+            <ProductCreatorName>
+              <span>{productQuery.data?.creator.name}</span>강사님
+            </ProductCreatorName>
+            <ProductCreatorDescription>{productQuery.data?.creator.description}</ProductCreatorDescription>
+          </ProductCreatorInformation>
+        </ProductCreatorContainer>
       </ProductInformation>
     </Container>
   );
@@ -46,6 +56,7 @@ const Detail = () => {
 const Container = styled.div`
   width: 100%;
   height: 100%;
+  background-color: ${COLOR.BACKGROUND50};
 `;
 
 const ProductImage = styled(Image)`
@@ -73,8 +84,8 @@ const ProductTitle = styled.h1`
   margin: 0;
   font-style: normal;
   font-weight: 700;
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-size: 1.75rem;
+  line-height: 2.5rem;
 `;
 
 const ProductInformation = styled.div`
@@ -83,7 +94,7 @@ const ProductInformation = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 1rem;
-  gap: 1.5rem;
+  gap: 1.25rem;
 `;
 
 const ProductPriceContainer = styled.div`
@@ -112,7 +123,7 @@ const ProductTags = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
   padding: 0 1rem;
 `;
 
@@ -145,6 +156,66 @@ const ProductTagName = styled.p`
   font-size: 0.75rem;
   line-height: 1.5rem;
   color: ${COLOR.GRAY400};
+`;
+
+const ProductDescription = styled.p`
+  font-weight: 500;
+  font-size: 0.9rem;
+  line-height: 1.5rem;
+`;
+
+const ProductCreatorContainer = styled.div`
+  width: 100%;
+  padding: 1.25rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: ${COLOR.WHITE};
+  border-radius: 1rem;
+  border: 2px solid ${COLOR.GRAY100};
+`;
+
+const ProductCreatorImage = styled(Image)`
+  width: 4rem;
+  height: 4rem;
+  border-radius: 100%;
+  margin: 0 1rem;
+`;
+
+const ProductCreatorInformation = styled.div`
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  justify-content: center;
+  font-weight: 400;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+  color: ${COLOR.GRAY400};
+`;
+
+const ProductCreatorName = styled.p`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  margin: 0;
+
+  span {
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    color: ${COLOR.BLACK};
+    margin-right: 0.25rem;
+  }
+`;
+
+const ProductCreatorDescription = styled.p`
+  font-weight: 400;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+  color: ${COLOR.GRAY400};
+  margin: 0;
 `;
 
 export default Detail;
