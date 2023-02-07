@@ -8,6 +8,7 @@ import Image from 'next/image';
 import COLOR from '@src/common/constants/Colors';
 import Tags from '@src/components/global/Tags';
 import { TagIcon } from '@src/common/constants/TagIcon';
+import Divider from '@src/components/global/Divider';
 
 const Detail = () => {
   const { query } = useRouter();
@@ -40,7 +41,12 @@ const Detail = () => {
         </ProductTags>
         <ProductDescription>{productQuery.data?.description}</ProductDescription>
         <ProductCreatorContainer>
-          <ProductCreatorImage src={productQuery.data?.creator.image} alt={'Profile Image'} width={64} height={64} />
+          <ProductCreatorImage
+            src={productQuery.data?.creator.image || '/images/System_Profile.svg'}
+            alt={'Profile Image'}
+            width={64}
+            height={64}
+          />
           <ProductCreatorInformation>
             <ProductCreatorName>
               <span>{productQuery.data?.creator.name}</span>강사님
@@ -49,6 +55,7 @@ const Detail = () => {
           </ProductCreatorInformation>
         </ProductCreatorContainer>
       </ProductInformation>
+      <Divider />
     </Container>
   );
 };
