@@ -15,6 +15,9 @@ const PlanInformation = ({ description, creator, tags }: { description: string; 
         {tags?.map((tag: string) => (
           <ProductTagWrapper>
             <ProductTag>
+              {/* 
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error */}
               <ProductTagIcon src={`/images/${TagIcon[tag]}.svg`} />
             </ProductTag>
             <ProductTagName>{tag}</ProductTagName>

@@ -26,3 +26,19 @@ export const purchaseProduct = async (id: string | string[] | undefined, userId:
 
   return res.data;
 };
+
+export const getAllProductIds = async () => {
+  const [res1, res2, res3] = await Promise.all([
+    getTodoMallList('career'),
+    getTodoMallList('self'),
+    getTodoMallList('investment'),
+  ]);
+
+  let productIds = [];
+
+  productIds.push(...res1.map((product: any) => product.id));
+  productIds.push(...res2.map((product: any) => product.id));
+  productIds.push(...res3.map((product: any) => product.id));
+
+  return productIds;
+};

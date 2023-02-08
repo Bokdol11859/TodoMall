@@ -3,7 +3,7 @@ import React from 'react';
 import { Header } from '@src/components/global/Header';
 import { useRouter } from 'next/router';
 import { useQuery } from '@tanstack/react-query';
-import { getProductDetail } from '@src/common/api/fetcher';
+import { getAllProductIds, getProductDetail } from '@src/common/api/fetcher';
 import Image from 'next/image';
 import COLOR from '@src/common/constants/Colors';
 import Divider from '@src/components/global/Divider';
@@ -15,33 +15,23 @@ import PlanInformation from '@src/components/todomall/detail/PlanInformation';
 import PlanHeader from '@src/components/todomall/detail/PlanHeader';
 import Button from '@src/components/global/Button';
 
-const Detail = () => {
+const Detail = ({ data }: any) => {
   const { query, push } = useRouter();
-
-  const productQuery = useQuery(['product', query.id], () => getProductDetail(query.id));
 
   return (
     <Container>
-      <Header isBack text={productQuery.data?.title} />
-      <ProductImage src={productQuery.data?.image} alt="" width={400} height={300} />
-      <PlanHeader
-        subDescription={productQuery.data?.subDescription}
-        title={productQuery.data?.title}
-        informationTags={productQuery.data?.informationTags}
-      />
-      <PlanInformation
-        description={productQuery.data?.description}
-        creator={productQuery.data?.creator}
-        tags={productQuery.data?.summarizedTags}
-      />
+      <Header isBack text={data.title} />
+      <ProductImage src={data.image} alt="" width={400} height={300} />
+      <PlanHeader subDescription={data.subDescription} title={data.title} informationTags={data.informationTags} />
+      <PlanInformation description={data.description} creator={data.creator} tags={data.summarizedTags} />
       <Divider />
-      <PlanFirst data={productQuery.data?.expectIts[0]} />
+      <PlanFirst data={data.expectIts[0]} />
       <Divider />
-      <PlanSecond data={productQuery.data?.recommends} />
+      <PlanSecond data={data.recommends} />
       <Divider />
-      <PlanThird data={productQuery.data?.recommendUsers} />
+      <PlanThird data={data.recommendUsers} />
       <Divider />
-      <PlanCurriculum data={productQuery.data?.sessions} />
+      <PlanCurriculum data={data.sessions} />
       <Footer>
         <Button
           onClick={() => {
@@ -56,6 +46,27 @@ const Detail = () => {
     </Container>
   );
 };
+
+export async function getStaticPaths() {
+  let ids = await getAllProductIds();
+  const paths = ids.map((id) => ({
+    params: { id: id },
+  }));
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+}
+
+export async function getStaticProps({ params }: any) {
+  const data = await getProductDetail(params.id);
+
+  return {
+    props: {
+      data,
+    },
+  };
+}
 
 const Container = styled.div`
   width: 100%;
