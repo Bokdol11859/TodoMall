@@ -16,7 +16,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button = ({ children, onClick, isLoading, variant, size, rounder }: ButtonProps) => {
   return (
     <StyledButton
-      onClick={variant !== 'Disabled' ? onClick : undefined}
+      onClick={variant !== 'Disabled' || isLoading ? onClick : undefined}
       variant={variant}
       size={size}
       rounder={rounder}>
