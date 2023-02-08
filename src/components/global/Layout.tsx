@@ -8,6 +8,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
 const Container = styled.div`
   position: relative;
+  width: 100%;
   height: 100%;
   margin: auto;
   max-width: 900px;

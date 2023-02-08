@@ -3,6 +3,7 @@ import COLOR from '@src/common/constants/Colors';
 import Class from '@src/common/types/Class.type';
 import Image from 'next/image';
 import React from 'react';
+import Profile from '../global/Profile';
 import { SettingIcon } from '../icons/SystemIcons';
 
 const MyPageHeader = ({
@@ -23,12 +24,11 @@ const MyPageHeader = ({
   return (
     <Container>
       <ProfileContainer>
-        <ImageWrapper>
-          <ProfileImage width={64} height={64} alt="Profile Picture" src={profileImage} />
+        <Profile image={profileImage}>
           <SettingIconWrapper>
             <SettingIcon onClick={() => {}} />
           </SettingIconWrapper>
-        </ImageWrapper>
+        </Profile>
 
         <UserName>{name}</UserName>
         <UserEmail>{email}</UserEmail>
@@ -56,6 +56,7 @@ const Container = styled.div`
   height: 17.5rem;
   background-color: ${COLOR.BACKGROUND50};
   border-bottom: 0.25rem solid ${COLOR.GRAY50};
+  position: absolute;
 `;
 
 const ProfileContainer = styled.div`

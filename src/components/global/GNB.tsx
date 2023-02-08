@@ -46,11 +46,11 @@ const GNB = () => {
 
 const Container = styled.div`
   position: absolute;
-  height: 3.5rem;
+  height: 6rem;
+  padding-bottom: 1.5rem;
   width: 100%;
   bottom: 0;
   left: 0;
-  padding-bottom: 2.125rem;
   display: flex;
   align-items: center;
   background-color: ${COLOR.WHITE};
