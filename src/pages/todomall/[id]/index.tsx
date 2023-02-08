@@ -6,8 +6,6 @@ import { useQuery } from '@tanstack/react-query';
 import { getProductDetail } from '@src/common/api/fetcher';
 import Image from 'next/image';
 import COLOR from '@src/common/constants/Colors';
-import Tags from '@src/components/global/Tags';
-import { TagIcon } from '@src/common/constants/TagIcon';
 import Divider from '@src/components/global/Divider';
 import PlanFirst from '@src/components/todomall/detail/PlanFirst';
 import PlanSecond from '@src/components/todomall/detail/PlanSecond';
@@ -18,7 +16,7 @@ import PlanHeader from '@src/components/todomall/detail/PlanHeader';
 import Button from '@src/components/global/Button';
 
 const Detail = () => {
-  const { query } = useRouter();
+  const { query, push } = useRouter();
 
   const productQuery = useQuery(['product', query.id], () => getProductDetail(query.id));
 
@@ -45,7 +43,13 @@ const Detail = () => {
       <Divider />
       <PlanCurriculum data={productQuery.data?.sessions} />
       <Footer>
-        <Button onClick={() => {}} size="Large" rounder={false} variant="Primary">
+        <Button
+          onClick={() => {
+            push(`/todomall/${query.id}/purchase`);
+          }}
+          size="Large"
+          rounder={false}
+          variant="Primary">
           클래스 도전하기
         </Button>
       </Footer>

@@ -17,3 +17,12 @@ export const getProductDetail = async (id: string | string[] | undefined) => {
 
   return res.data;
 };
+
+export const purchaseProduct = async (id: string | string[] | undefined, userId: string) => {
+  const res = await AxiosInstance.post(`user/product`, {
+    productId: id,
+    userId: userId,
+  });
+
+  return res.data;
+};
