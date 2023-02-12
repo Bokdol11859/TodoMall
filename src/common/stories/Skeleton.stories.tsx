@@ -5,4 +5,4 @@ export default {
   component: Skeleton,
 };
 
-export const Primary = () => <Skeleton width="300px" height="180px" />;
+export const Primary = () => <Skeleton width="400px" height="180px" />;
