@@ -18,6 +18,8 @@ import Button from '@src/components/global/Button';
 const Detail = ({ data }: any) => {
   const { query, push } = useRouter();
 
+  // const productQuery = useQuery(['product', query.id], () => getProductDetail(query.id));
+
   return (
     <Container>
       <Header isBack text={data.title} />
