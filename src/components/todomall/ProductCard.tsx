@@ -5,21 +5,16 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import Tags from '../global/Tags';
 
-const ProductCard = ({
-  id,
-  subtitle,
-  title,
-  description,
-  icon,
-  tags,
-}: {
+export interface ProductCardProps {
   id: string;
   subtitle: string;
   title: string;
   description: string;
   icon: string;
   tags: string[];
-}) => {
+}
+
+const ProductCard = ({ id, subtitle, title, description, icon, tags }: ProductCardProps) => {
   const { push } = useRouter();
 
   const handleClick = () => {

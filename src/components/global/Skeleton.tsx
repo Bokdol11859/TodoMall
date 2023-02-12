@@ -8,24 +8,8 @@ const Skeleton = ({ width, height }: { width: string; height: string }) => {
 const Wrapper = styled.div<{ width: string; height: string }>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
-  background-color: #b7babf;
+  background-color: #e0e3e9;
   border-radius: 1rem;
-
-  @keyframes pulse {
-    0% {
-      background-color: #b7babf;
-    }
-
-    50% {
-      background-color: #cbd5e1;
-    }
-
-    100% {
-      background-color: #b7babf;
-    }
-  }
-
-  animation: pulse 1.5s infinite ease-in-out;
 `;
 
 export default Skeleton;

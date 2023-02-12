@@ -4,7 +4,11 @@ import React from 'react';
 import Skeleton from '../global/Skeleton';
 import ProductCard from './ProductCard';
 
-const ProductList = ({ productList }: { productList: Product[] }) => {
+export interface ProductListProps {
+  productList: Product[];
+}
+
+const ProductList = ({ productList }: ProductListProps) => {
   return (
     <Container>
       <>

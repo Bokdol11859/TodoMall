@@ -15,6 +15,8 @@ const TodoMall = () => {
 
   const TodoMallQuery = useQuery(['TodoMall', category], () => getTodoMallList(category));
 
+  console.log(TodoMallQuery?.data);
+
   return (
     <MainPageLayout>
       <NavBar category={category} />
