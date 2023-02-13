@@ -10,10 +10,15 @@ const SessionList = ({ data }: { data: Class[] }) => {
     <Container>
       {data.map((_Class: Class) => {
         return (
-          <SessionCard isFail={checkFail(_Class)} session={getCurrentSession(_Class.sessions)} title={_Class.title} />
+          <SessionCard
+            productId={_Class.id}
+            isFail={checkFail(_Class)}
+            session={getCurrentSession(_Class.sessions)}
+            title={_Class.title}
+          />
         );
       })}
-      <SessionCard isInvisible isFail={checkFail(data[0])} session={getCurrentSession(data[0].sessions)} title="" />
+      <SessionCard isInvisible productId="" isFail={false} session={getCurrentSession(data[0].sessions)} title="" />
     </Container>
   );
 };

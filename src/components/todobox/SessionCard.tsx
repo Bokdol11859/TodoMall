@@ -1,9 +1,12 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import COLOR from '@src/common/constants/Colors';
+import { setActiveTodo } from '@src/common/redux/slices/activeTodoSlice';
 import Session from '@src/common/types/Session.type';
 import Todo from '@src/common/types/Todo.type';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Button from '../global/Button';
 import { DetailIcon, TodoCheckBoxIcon } from '../icons/SystemIcons';
 
@@ -28,11 +31,13 @@ const getDDAYStyle = (status: string) => {
 };
 
 const SessionCard = ({
+  productId,
   isFail,
   session,
   title,
   isInvisible = false,
 }: {
+  productId: string;
   isFail: boolean;
   session: Session;
   title: string;
@@ -42,6 +47,8 @@ const SessionCard = ({
   const [leftTime, setLeftTime] = useState(1);
   const isRequireAssignment = session.todos.filter((todo: Todo) => !todo.status).length === 0;
   const DDAY = Number(new Date(Date.parse(session.expireDate)).getDate() - new Date().getDate());
+  const { push } = useRouter();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let diff: number = Number(new Date(Date.parse(session.expireDate)).getTime() - new Date().getTime());
@@ -67,13 +74,26 @@ const SessionCard = ({
       </SessionDescription>
       <SessionBody>
         {session.todos.map((todo: Todo) => (
-          <TodoRow key={todo.id}>
+          <TodoRow
+            onClick={() => {
+              dispatch(
+                setActiveTodo({
+                  productId: productId,
+                  sessionId: session.id,
+                  todoId: todo.id,
+                  title: todo.title,
+                  isFinished: todo.status,
+                }),
+              );
+              push(`/todobox/${todo.id}`);
+            }}
+            key={todo.id}>
             <TodoCheckBoxWrapper>
               <TodoCheckBoxIcon checked={todo.status} />
             </TodoCheckBoxWrapper>
             <TodoTitle checked={todo.status}>{todo.title}</TodoTitle>
             <TodoArrowButtonWrapper>
-              <DetailIcon onClick={() => {}} color={todo.status ? COLOR.GRAY200 : COLOR.BLACK} />
+              <DetailIcon color={todo.status ? COLOR.GRAY200 : COLOR.BLACK} />
             </TodoArrowButtonWrapper>
           </TodoRow>
         ))}

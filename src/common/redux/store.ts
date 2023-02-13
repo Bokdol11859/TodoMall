@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import activeTodoSlice from './slices/activeTodoSlice';
 import agreementSlice from './slices/agreementSlice';
 import categorySlice from './slices/categorySlice';
 import splashSlice from './slices/splashSlice';
@@ -10,6 +11,7 @@ export const store = configureStore({
     splash: splashSlice,
     userinfo: userInfoSlice,
     category: categorySlice,
+    activeTodo: activeTodoSlice,
   },
 });
 

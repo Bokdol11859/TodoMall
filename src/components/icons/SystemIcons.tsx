@@ -12,7 +12,7 @@ export const BackArrowIcon = ({ onClick, isBack }: { onClick: () => void; isBack
   </svg>
 );
 
-export const CheckBoxIcon = ({ onClick, isActive }: { onClick: () => void; isActive: boolean }) => {
+export const CheckBoxIcon = ({ onClick, isActive }: { onClick?: () => void; isActive: boolean }) => {
   if (isActive) {
     return (
       <svg onClick={onClick} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +41,7 @@ export const CheckBoxIcon = ({ onClick, isActive }: { onClick: () => void; isAct
   );
 };
 
-export const DetailIcon = ({ onClick, color }: { onClick: () => void; color?: string }) => (
+export const DetailIcon = ({ onClick, color }: { onClick?: () => void; color?: string }) => (
   <svg onClick={onClick} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M10 17L15 12L10 7"

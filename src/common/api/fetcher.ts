@@ -42,3 +42,18 @@ export const getAllProductIds = async () => {
 
   return productIds;
 };
+
+export const getTodoDetail = async (id: string) => {
+  const res = await AxiosInstance.get(`products/todo?id=${id}`);
+
+  return res.data;
+};
+
+export const finishTodo = async (data: { userId: string; productId: string; sessionId: string; todoId: string }) => {
+  console.log(data);
+  const res = await AxiosInstance.patch(`user/product`, {
+    ...data,
+  });
+
+  return res.data;
+};
