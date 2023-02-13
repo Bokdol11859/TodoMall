@@ -8,14 +8,18 @@ export const checkSuccess = (_class: Class) =>
 
 export const checkFail = (_class: Class) =>
   _class.sessions.filter((session: Session) => {
-    let expireTime = Date.parse(session.expireDate);
-    return expireTime <= currentTime;
+    if (!session.status) {
+      let expireTime = Date.parse(session.expireDate);
+      return expireTime <= currentTime;
+    }
   }).length > 0;
 
 export const checkIsNotFail = (_class: Class) =>
   _class.sessions.filter((session: Session) => {
-    let expireTime = Date.parse(session.expireDate);
-    return expireTime > currentTime;
+    if (!session.status) {
+      let expireTime = Date.parse(session.expireDate);
+      return expireTime > currentTime;
+    }
   }).length > 0;
 
 export const checkIsNotSuccess = (_class: Class) =>

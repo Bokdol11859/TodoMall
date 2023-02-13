@@ -1,24 +1,40 @@
 import styled from '@emotion/styled';
+import { getUserInfo } from '@src/common/api/fetcher';
+import { RootState } from '@src/common/redux/store';
+import { checkIsNotSuccess } from '@src/common/utils/checkClassState';
 import MainPageLayout from '@src/components/global/MainPageLayout';
+import SessionList from '@src/components/todobox/SessionList';
 import StatusBar from '@src/components/todobox/StatusBar';
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 const TodoBox = () => {
+  const { email } = useSelector((store: RootState) => store.userinfo);
+
+  const UserInfoQuery = useQuery(['UserInfo'], () => getUserInfo(email));
+
+  if (UserInfoQuery.isLoading) {
+    return <div>Loading. . .</div>;
+  }
+
   return (
     <MainPageLayout>
+      <StatusBar
+        image={UserInfoQuery.data.image}
+        name={UserInfoQuery.data.name}
+        count={UserInfoQuery.data.ownProducts.filter(checkIsNotSuccess).length}
+      />
       <TodoBoxWrapper>
-        <StatusBar
-          image="https://k.kakaocdn.net/dn/ipesc/btrTR0GQ3Ov/Ieom0tqjpt3UKp6nZOXjZ1/img_640x640.jpg"
-          name="박준열"
-          count={3}
-        />
+        <SessionList data={UserInfoQuery.data.ownProducts.filter(checkIsNotSuccess)} />
       </TodoBoxWrapper>
     </MainPageLayout>
   );
 };
 
 const TodoBoxWrapper = styled.div`
-  margin-top: 4rem;
+  margin: auto;
+  margin-top: 7rem;
 `;
 
 export default TodoBox;

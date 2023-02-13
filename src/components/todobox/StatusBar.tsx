@@ -25,10 +25,14 @@ const StatusBar = ({ image, name, count }: StatusBarProps) => {
 
 const Container = styled.div`
   width: 100%;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  z-index: 100;
+  top: 3rem;
+  background-color: ${COLOR.BACKGROUND100};
 `;
 
 const Description = styled.div`
