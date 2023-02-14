@@ -57,6 +57,7 @@ const Container = styled.div`
   background-color: ${COLOR.BACKGROUND50};
   border-bottom: 0.25rem solid ${COLOR.GRAY50};
   position: absolute;
+  z-index: 100;
 `;
 
 const ProfileContainer = styled.div`

@@ -6,6 +6,29 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
+const Personal = ({ html }: { html: string }) => {
+  const dispatch = useDispatch();
+  const { push } = useRouter();
+  return (
+    <Container>
+      <Header text="개인정보 처리방침" isBack />
+      <HTMLDiv dangerouslySetInnerHTML={{ __html: html }} />
+      <Footer>
+        <Button
+          variant="Primary"
+          size="Large"
+          rounder={false}
+          isLoading={false}
+          onClick={() => {
+            dispatch(togglePersonal());
+            push('/signup');
+          }}>
+          제출하기
+        </Button>
+      </Footer>
+    </Container>
+  );
+};
 export const getStaticProps = async () => {
   const data = `
   <pre
@@ -166,30 +189,6 @@ export const getStaticProps = async () => {
       html: data,
     },
   };
-};
-
-const Personal = ({ html }: { html: string }) => {
-  const dispatch = useDispatch();
-  const { push } = useRouter();
-  return (
-    <Container>
-      <Header text="개인정보 처리방침" isBack />
-      <HTMLDiv dangerouslySetInnerHTML={{ __html: html }} />
-      <Footer>
-        <Button
-          variant="Primary"
-          size="Large"
-          rounder={false}
-          isLoading={false}
-          onClick={() => {
-            dispatch(togglePersonal());
-            push('/signup');
-          }}>
-          제출하기
-        </Button>
-      </Footer>
-    </Container>
-  );
 };
 
 const Container = styled.div`

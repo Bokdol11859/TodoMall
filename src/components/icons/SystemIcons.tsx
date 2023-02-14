@@ -12,7 +12,7 @@ export const BackArrowIcon = ({ onClick, isBack }: { onClick: () => void; isBack
   </svg>
 );
 
-export const CheckBoxIcon = ({ onClick, isActive }: { onClick: () => void; isActive: boolean }) => {
+export const CheckBoxIcon = ({ onClick, isActive }: { onClick?: () => void; isActive: boolean }) => {
   if (isActive) {
     return (
       <svg onClick={onClick} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,9 +41,15 @@ export const CheckBoxIcon = ({ onClick, isActive }: { onClick: () => void; isAct
   );
 };
 
-export const DetailIcon = ({ onClick }: { onClick: () => void }) => (
+export const DetailIcon = ({ onClick, color }: { onClick?: () => void; color?: string }) => (
   <svg onClick={onClick} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 17L15 12L10 7" stroke="#C0C0C0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path
+      d="M10 17L15 12L10 7"
+      stroke={color ? color : '#C0C0C0'}
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
   </svg>
 );
 
@@ -69,3 +75,21 @@ export const SettingIcon = ({ onClick }: { onClick: () => void }) => (
     />
   </svg>
 );
+
+export const TodoCheckBoxIcon = ({ checked }: { checked: boolean }) =>
+  checked ? (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="16" height="16" rx="4" fill="#DBDBDB" />
+      <path
+        d="M3 7.04545L6.68421 11L13 5"
+        stroke="#888888"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  ) : (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="16" height="16" rx="4" fill="#E2DBFF" />
+    </svg>
+  );

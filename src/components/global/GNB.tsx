@@ -7,10 +7,10 @@ import React from 'react';
 import { MypageIcon, TodoBoxIcon, TodoMallIcon } from '../icons/GNBIcons';
 
 const GNB = () => {
-  const { replace, pathname } = useRouter();
+  const { push, pathname } = useRouter();
 
   const handleClick = (path: Path) => {
-    replace(path);
+    push(path);
   };
 
   const isActive = (path: Path) => {

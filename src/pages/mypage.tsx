@@ -18,6 +18,10 @@ const MyPage = () => {
   const { successClasses, failClasses, ongoingClasses } = separateClassesByState(data?.ownProducts);
   const allClasses = data && [...data.ownProducts].reverse();
 
+  console.log('success: ', successClasses);
+  console.log('fail: ', failClasses);
+  console.log('ongoing: ', ongoingClasses);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
