@@ -50,6 +50,20 @@ const SessionCard = ({
   const { push } = useRouter();
   const dispatch = useDispatch();
 
+  const handleClickSubmit = () => {
+    dispatch(
+      setActiveTodo({
+        productId: productId,
+        sessionId: session.id,
+        sessionTitle: session.title,
+        todoId: '',
+        title: '',
+        isFinished: false,
+      }),
+    );
+    push('/todobox/submit');
+  };
+
   useEffect(() => {
     let diff: number = Number(new Date(Date.parse(session.expireDate)).getTime() - new Date().getTime());
     if (diff < 0) {
@@ -80,6 +94,7 @@ const SessionCard = ({
                 setActiveTodo({
                   productId: productId,
                   sessionId: session.id,
+                  sessionTitle: session.title,
                   todoId: todo.id,
                   title: todo.title,
                   isFinished: todo.status,
@@ -100,7 +115,7 @@ const SessionCard = ({
       </SessionBody>
       {isRequireAssignment && (
         <CardFooter>
-          <Button variant="Primary" rounder={false} size="Large">
+          <Button onClick={handleClickSubmit} variant="Primary" rounder={false} size="Large">
             세션 인증하러 가기
           </Button>
         </CardFooter>

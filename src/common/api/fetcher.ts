@@ -50,7 +50,19 @@ export const getTodoDetail = async (id: string) => {
 };
 
 export const finishTodo = async (data: { userId: string; productId: string; sessionId: string; todoId: string }) => {
-  console.log(data);
+  const res = await AxiosInstance.patch(`user/product`, {
+    ...data,
+  });
+
+  return res.data;
+};
+
+export const uploadImage = async (data: {
+  userId: string;
+  productId: string;
+  sessionId: string;
+  missionImage: string;
+}) => {
   const res = await AxiosInstance.patch(`user/product`, {
     ...data,
   });
