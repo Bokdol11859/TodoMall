@@ -3,7 +3,7 @@ import React from 'react';
 
 const Skeleton = ({ width, height }: { width: string; height: string }) => {
   return (
-    <Container width={width} height={height}>
+    <ProductContainer width={width} height={height}>
       <Icon />
       <SubTitle />
       <Title />
@@ -13,11 +13,99 @@ const Skeleton = ({ width, height }: { width: string; height: string }) => {
         <Tag />
         <Tag />
       </TagsList>
-    </Container>
+    </ProductContainer>
   );
 };
 
-const Container = styled.div<{ width: string; height: string }>`
+export const SessionCardSkeleton = () => {
+  return (
+    <SessionContainer>
+      <SessionTitle />
+      <SessionTodo />
+      <SessionTodo />
+      <SessionTodo />
+    </SessionContainer>
+  );
+};
+
+export const StatusBarSkeleton = () => {
+  return (
+    <StatusBarContainer>
+      <StatusBarProfile />
+      <StatusBarDescription>
+        <StatusBarSubTitle />
+        <StatusBarTitle />
+      </StatusBarDescription>
+    </StatusBarContainer>
+  );
+};
+
+const StatusBarContainer = styled.div`
+  padding: 0.5rem 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+`;
+
+const StatusBarProfile = styled.div`
+  background-color: #caced7;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100%;
+`;
+
+const StatusBarDescription = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+`;
+
+const StatusBarSubTitle = styled.div`
+  background-color: #caced7;
+  width: 50%;
+  height: 1rem;
+  border-radius: 0.5rem;
+`;
+
+const StatusBarTitle = styled.div`
+  background-color: #caced7;
+  width: 50%;
+  height: 1rem;
+  border-radius: 0.5rem;
+`;
+
+const SessionContainer = styled.div`
+  width: 100%;
+  max-width: 380px;
+  background-color: #e0e3e9;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  gap: 0.25rem;
+`;
+
+const SessionTitle = styled.div`
+  background-color: #caced7;
+  width: 60%;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+`;
+
+const SessionTodo = styled.div`
+  background-color: #caced7;
+  width: 100%;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+`;
+
+const ProductContainer = styled.div<{ width: string; height: string }>`
   position: relative;
   width: ${(props) => props.width};
   height: ${(props) => props.height};

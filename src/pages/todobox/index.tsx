@@ -14,19 +14,19 @@ const TodoBox = () => {
 
   const UserInfoQuery = useQuery(['UserInfo'], () => getUserInfo(email));
 
-  if (UserInfoQuery.isLoading) {
-    return <div>Loading. . .</div>;
-  }
-
   return (
     <MainPageLayout>
       <StatusBar
-        image={UserInfoQuery.data.image}
-        name={UserInfoQuery.data.name}
-        count={UserInfoQuery.data.ownProducts.filter(checkIsNotSuccess).length}
+        isLoading={UserInfoQuery.isLoading}
+        image={UserInfoQuery.data?.image}
+        name={UserInfoQuery.data?.name}
+        count={UserInfoQuery.data?.ownProducts.filter(checkIsNotSuccess).length}
       />
       <TodoBoxWrapper>
-        <SessionList data={UserInfoQuery.data.ownProducts.filter(checkIsNotSuccess)} />
+        <SessionList
+          isLoading={UserInfoQuery.isLoading}
+          data={UserInfoQuery.data?.ownProducts.filter(checkIsNotSuccess)}
+        />
       </TodoBoxWrapper>
     </MainPageLayout>
   );

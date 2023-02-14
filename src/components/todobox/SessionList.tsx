@@ -3,22 +3,29 @@ import Class from '@src/common/types/Class.type';
 import { checkFail, checkSuccess } from '@src/common/utils/checkClassState';
 import { getCurrentSession } from '@src/common/utils/getCurrentSession';
 import React from 'react';
+import { SessionCardSkeleton } from '../global/Skeleton';
 import SessionCard from './SessionCard';
 
-const SessionList = ({ data }: { data: Class[] }) => {
+const SessionList = ({ isLoading, data }: { isLoading: boolean; data: Class[] }) => {
   return (
     <Container>
-      {data.map((_Class: Class) => {
-        return (
-          <SessionCard
-            productId={_Class.id}
-            isFail={checkFail(_Class)}
-            session={getCurrentSession(_Class.sessions)}
-            title={_Class.title}
-          />
-        );
-      })}
-      <SessionCard isInvisible productId="" isFail={false} session={getCurrentSession(data[0].sessions)} title="" />
+      {isLoading
+        ? Array(10)
+            .fill('')
+            .map((_, idx) => <SessionCardSkeleton key={idx} />)
+        : data.map((_Class: Class) => {
+            return (
+              <SessionCard
+                productId={_Class.id}
+                isFail={checkFail(_Class)}
+                session={getCurrentSession(_Class.sessions)}
+                title={_Class.title}
+              />
+            );
+          })}
+      {!isLoading && (
+        <SessionCard isInvisible productId="" isFail={false} session={getCurrentSession(data[0].sessions)} title="" />
+      )}
     </Container>
   );
 };

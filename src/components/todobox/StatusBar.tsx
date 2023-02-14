@@ -2,23 +2,31 @@ import styled from '@emotion/styled';
 import COLOR from '@src/common/constants/Colors';
 import React from 'react';
 import Profile from '../global/Profile';
+import { StatusBarSkeleton } from '../global/Skeleton';
 
 export interface StatusBarProps {
+  isLoading: boolean;
   image: string;
   name: string;
   count: number;
 }
 
-const StatusBar = ({ image, name, count }: StatusBarProps) => {
+const StatusBar = ({ isLoading, image, name, count }: StatusBarProps) => {
   return (
     <Container>
-      <Profile image={image} isSmall />
-      <Description>
-        <CheerText>힘내세요, {name}님!</CheerText>
-        <TodoCount>
-          <span>{count}개의 투두</span> 도전 중
-        </TodoCount>
-      </Description>
+      {isLoading ? (
+        <StatusBarSkeleton />
+      ) : (
+        <>
+          <Profile image={image} isSmall />
+          <Description>
+            <CheerText>힘내세요, {name}님!</CheerText>
+            <TodoCount>
+              <span>{count}개의 투두</span> 도전 중
+            </TodoCount>
+          </Description>
+        </>
+      )}
     </Container>
   );
 };
