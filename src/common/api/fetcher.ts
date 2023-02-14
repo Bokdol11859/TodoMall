@@ -49,6 +49,14 @@ export const getTodoDetail = async (id: string) => {
   return res.data;
 };
 
+export const deleteSession = async (data: { userId: string; productId: string }) => {
+  const res = await AxiosInstance.delete(`user/product`, {
+    data: data,
+  });
+
+  return res.data;
+};
+
 export const finishTodo = async (data: { userId: string; productId: string; sessionId: string; todoId: string }) => {
   const res = await AxiosInstance.patch(`user/product`, {
     ...data,

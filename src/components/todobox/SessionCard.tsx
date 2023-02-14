@@ -1,34 +1,18 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { deleteSession } from '@src/common/api/fetcher';
 import COLOR from '@src/common/constants/Colors';
 import { setActiveTodo } from '@src/common/redux/slices/activeTodoSlice';
+import { RootState } from '@src/common/redux/store';
 import Session from '@src/common/types/Session.type';
 import Todo from '@src/common/types/Todo.type';
+import { getDDAYStyle } from '@src/common/utils/getDDAYStyle';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../global/Button';
 import { DetailIcon, TodoCheckBoxIcon } from '../icons/SystemIcons';
-
-const getDDAYStyle = (status: string) => {
-  switch (status) {
-    case 'FINISH':
-      return css`
-        background-color: #e1dcfe;
-        color: #6b47fd;
-      `;
-    case 'URGENT':
-      return css`
-        background-color: #ffc6c6;
-        color: #f65050;
-      `;
-    default:
-      return css`
-        background-color: #dddddd;
-        color: #707070;
-      `;
-  }
-};
 
 const SessionCard = ({
   productId,
@@ -49,6 +33,23 @@ const SessionCard = ({
   const DDAY = Number(new Date(Date.parse(session.expireDate)).getDate() - new Date().getDate());
   const { push } = useRouter();
   const dispatch = useDispatch();
+  const { userid } = useSelector((store: RootState) => store.userinfo);
+  const queryClient = useQueryClient();
+
+  const SessionMutation = useMutation({
+    mutationFn: () =>
+      deleteSession({
+        userId: userid,
+        productId: productId,
+      }),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries(['UserInfo']);
+    },
+  });
+
+  const handleClickDelete = () => {
+    SessionMutation.mutate();
+  };
 
   const handleClickSubmit = () => {
     dispatch(
@@ -122,7 +123,12 @@ const SessionCard = ({
       )}
       {isFail && (
         <CardFooter>
-          <Button variant="Error" rounder={false} size="Large">
+          <Button
+            onClick={handleClickDelete}
+            isLoading={SessionMutation.isLoading}
+            variant="Error"
+            rounder={false}
+            size="Large">
             도전 삭제하기
           </Button>
         </CardFooter>
