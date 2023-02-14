@@ -14,19 +14,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '../global/Button';
 import { DetailIcon, TodoCheckBoxIcon } from '../icons/SystemIcons';
 
-const SessionCard = ({
-  productId,
-  isFail,
-  session,
-  title,
-  isInvisible = false,
-}: {
+export interface SessionCardProps {
   productId: string;
   isFail: boolean;
   session: Session;
   title: string;
   isInvisible?: boolean;
-}) => {
+}
+
+const SessionCard = ({ productId, isFail, session, title, isInvisible = false }: SessionCardProps) => {
   const [status, setStatus] = useState(isFail);
   const [leftTime, setLeftTime] = useState(1);
   const isRequireAssignment = session.todos.filter((todo: Todo) => !todo.status).length === 0;

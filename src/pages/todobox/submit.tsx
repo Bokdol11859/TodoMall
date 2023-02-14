@@ -13,6 +13,7 @@ import { useRouter } from 'next/router';
 
 const region = 'ap-northeast-2';
 const bucket = 'todomall-assignment-images';
+
 AWS.config.update({
   region: region,
   accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID,
@@ -48,6 +49,7 @@ const Submit = () => {
     console.log(compressedImage);
     console.log(e.target.files[0]);
     // setImage(e.target.files[0]);
+    //@ts-ignore
     setImage(compressedImage);
   };
 
@@ -74,6 +76,7 @@ const Submit = () => {
     if (!inputRef.current) {
       return;
     }
+    //@ts-ignore
     inputRef.current.click();
   };
 
@@ -87,8 +90,9 @@ const Submit = () => {
     const imgEL = document.querySelector('.img__box');
     const reader = new FileReader();
     if (imgEL) {
+      //@ts-ignore
       reader.onload = () => (imgEL.style.backgroundImage = `url(${reader.result})`);
-
+      //@ts-ignore
       reader.readAsDataURL(image);
     }
   };
@@ -200,5 +204,11 @@ const TodoSubmitFooter = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const getStaticProps = async () => {
+  return {
+    props: {},
+  };
+};
 
 export default Submit;
