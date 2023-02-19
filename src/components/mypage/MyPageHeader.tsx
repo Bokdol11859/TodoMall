@@ -4,6 +4,7 @@ import Class from '@src/common/types/Class.type';
 import Image from 'next/image';
 import React from 'react';
 import Profile from '../global/Profile';
+import { ProfileInfoSkeleton, ProfileSkeleton } from '../global/Skeleton';
 import { SettingIcon } from '../icons/SystemIcons';
 
 const MyPageHeader = ({
@@ -13,6 +14,7 @@ const MyPageHeader = ({
   successClasses,
   failClasses,
   ongoingClasses,
+  isLoading,
 }: {
   name: string;
   email: string;
@@ -20,18 +22,28 @@ const MyPageHeader = ({
   successClasses: Class[];
   failClasses: Class[];
   ongoingClasses: Class[];
+  isLoading: Boolean;
 }) => {
   return (
     <Container>
       <ProfileContainer>
-        <Profile image={profileImage}>
-          <SettingIconWrapper>
+        {isLoading ? (
+          <ProfileSkeleton />
+        ) : (
+          <Profile image={profileImage}>
+            {/* <SettingIconWrapper>
             <SettingIcon onClick={() => {}} />
-          </SettingIconWrapper>
-        </Profile>
-
-        <UserName>{name}</UserName>
-        <UserEmail>{email}</UserEmail>
+          </SettingIconWrapper> */}
+          </Profile>
+        )}
+        {isLoading ? (
+          <ProfileInfoSkeleton />
+        ) : (
+          <>
+            <UserName>{name}</UserName>
+            <UserEmail>{email}</UserEmail>
+          </>
+        )}
       </ProfileContainer>
       <DataContainer>
         <DataColumn>

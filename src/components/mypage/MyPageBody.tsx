@@ -2,21 +2,26 @@ import styled from '@emotion/styled';
 import Class from '@src/common/types/Class.type';
 import { checkFail, checkIsNotFail, checkIsNotSuccess, checkSuccess } from '@src/common/utils/checkClassState';
 import React from 'react';
+import { MyPageRowSkeleton } from '../global/Skeleton';
 import MyPageRow from './MyPageRow';
 
-const MyPageBody = ({ classes }: { classes: Class[] }) => {
+const MyPageBody = ({ classes, isLoading }: { classes: Class[]; isLoading: Boolean }) => {
   return (
     <Container>
-      {classes.map((_class: Class, idx: number) => (
-        <MyPageRow
-          id={classes.length - idx}
-          title={_class.title}
-          icon={_class.icon}
-          isSuccess={checkSuccess(_class)}
-          isFail={checkFail(_class)}
-          isOnGoing={checkIsNotFail(_class) && checkIsNotSuccess(_class)}
-        />
-      ))}
+      {isLoading
+        ? Array(10)
+            .fill('')
+            .map((_, i) => <MyPageRowSkeleton />)
+        : classes.map((_class: Class, idx: number) => (
+            <MyPageRow
+              id={classes.length - idx}
+              title={_class.title}
+              icon={_class.icon}
+              isSuccess={checkSuccess(_class)}
+              isFail={checkFail(_class)}
+              isOnGoing={checkIsNotFail(_class) && checkIsNotSuccess(_class)}
+            />
+          ))}
     </Container>
   );
 };

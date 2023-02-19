@@ -40,6 +40,70 @@ export const StatusBarSkeleton = () => {
   );
 };
 
+export const ProfileSkeleton = () => {
+  return <Profile />;
+};
+
+export const ProfileInfoSkeleton = () => {
+  return (
+    <ProfileInfo>
+      <ProfileName />
+      <ProfileEmail />
+    </ProfileInfo>
+  );
+};
+
+export const MyPageRowSkeleton = () => {
+  return (
+    <RowWrapper>
+      <MyPageRow />
+    </RowWrapper>
+  );
+};
+
+const RowWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  margin: 1rem 0;
+`;
+
+const MyPageRow = styled.div`
+  width: 100%;
+  height: 75px;
+  border-radius: 1rem;
+  background-color: #caced7;
+`;
+
+const Profile = styled.div`
+  width: 4rem;
+  height: 4rem;
+  border-radius: 100%;
+  background-color: #caced7;
+`;
+
+const ProfileInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6px;
+  gap: 6px;
+`;
+
+const ProfileName = styled.div`
+  width: 150px;
+  height: 15px;
+  background-color: #caced7;
+`;
+
+const ProfileEmail = styled.div`
+  width: 150px;
+  height: 15px;
+  background-color: #caced7;
+`;
+
 const StatusBarContainer = styled.div`
   padding: 0.5rem 1rem;
   width: 100%;

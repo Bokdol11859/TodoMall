@@ -18,14 +18,6 @@ const MyPage = () => {
   const { successClasses, failClasses, ongoingClasses } = separateClassesByState(data?.ownProducts);
   const allClasses = data && [...data.ownProducts].reverse();
 
-  console.log('success: ', successClasses);
-  console.log('fail: ', failClasses);
-  console.log('ongoing: ', ongoingClasses);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   if (error) {
     return <div>{String(error)}</div>;
   }
@@ -34,13 +26,14 @@ const MyPage = () => {
     <MainPageLayout>
       <MyPageHeader
         email={email}
-        name={data.name}
-        profileImage={data.image}
+        name={data?.name}
+        profileImage={data?.image}
         successClasses={successClasses}
         failClasses={failClasses}
         ongoingClasses={ongoingClasses}
+        isLoading={isLoading}
       />
-      <MyPageBody classes={allClasses} />
+      <MyPageBody classes={allClasses} isLoading={isLoading} />
     </MainPageLayout>
   );
 };
